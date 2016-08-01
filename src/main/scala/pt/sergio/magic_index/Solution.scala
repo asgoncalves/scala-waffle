@@ -7,12 +7,9 @@ package pt.sergio.magic_index
 object Solution {
 
   def processArray(a: Seq[Int]) = {
-    var r: Vector[Int] = Vector()
-    for(i: Int <- a.indices) {
-      if(a(i) == i) {
-        r = r :+ i
-      }
+    a.indices.foldLeft(Vector.empty[Int]) {
+      case (v, e) if a(e) == e => v :+ e
+      case (v, e) => v
     }
-    r
   }
 }
