@@ -34,14 +34,9 @@ object Solution {
     def rightSum(i: Int): Int = partialSums.last - partialSums(i)
     def isRandLSumEqual(i: Int): Boolean = leftSum(i) == rightSum(i)
 
-    var r: Vector[Int] = Vector()
-
-    for(i: Int <- seq.indices) {
-      if(isRandLSumEqual(i)) {
-        r = r :+ i
-      }
+    seq.indices.foldLeft(Vector.empty[Int]) {
+      case (v, e) if isRandLSumEqual(e) => v :+ e
+      case (v, e) => v
     }
-    r
-    // seq.indices.find(isRandLSumEqual).getOrElse(-1)
   }
 }
